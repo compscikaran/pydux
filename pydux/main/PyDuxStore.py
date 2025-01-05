@@ -21,6 +21,8 @@ class PyDuxStore(Store):
 
     @override
     def dispatch(self, action: Action) -> None:
+        if action.payload_type == TimeTravel.INITIAL_STATE:
+            return
         new_state = self.reducer(action, copy.deepcopy(self.state))
         self.state = new_state
         self.time_travel.record_change(action)

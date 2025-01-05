@@ -20,7 +20,7 @@ class TimeTravel:
         return self.actions[0].payload
 
     def get_action_history(self) -> list[Action]:
-        return self.actions[:self.index]
+        return self.actions[1:self.index]
 
     def get_latest_action(self) -> Action:
         return self.actions[len(self.actions) - 1] if len(self.actions) > 0 else None
