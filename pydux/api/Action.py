@@ -1,7 +1,6 @@
-from pydantic import BaseModel
-from pydux.pydux.api.State import State
+from pydux.api.State import T
 
-
-class Action(BaseModel):
-    type: str
-    payload: State
+class Action:
+    def __init__(self, payload_type: str, payload: str | dict | T):
+        self.payload_type = payload_type
+        self.payload = payload

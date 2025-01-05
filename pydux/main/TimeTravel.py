@@ -1,5 +1,5 @@
 from argparse import Action
-from pydux.pydux.api.State import State
+from pydux.api.State import State
 
 
 class TimeTravel:
@@ -8,21 +8,21 @@ class TimeTravel:
     INITIAL_STATE = 'INITIAL_STATE'
 
     def __init__(self):
-        self.actions: list[dict] = []
+        self.actions: list[Action] = []
         self.snapshot = None
         self.index = 0
 
-    def record_change(self, action: dict) -> None:
+    def record_change(self, action: Action) -> None:
         self.actions.append(action)
         self.index += 1
 
     def get_initial_state(self) -> State:
-        return self.actions[0]['payload']
+        return self.actions[0].payload
 
-    def get_action_history(self) -> list[dict]:
+    def get_action_history(self) -> list[Action]:
         return self.actions[:self.index]
 
-    def get_latest_action(self) -> dict:
+    def get_latest_action(self) -> Action:
         return self.actions[len(self.actions) - 1] if len(self.actions) > 0 else None
 
     def go_forwards(self):

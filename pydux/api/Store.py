@@ -1,13 +1,14 @@
 from abc import ABC, abstractmethod
 from typing import Callable
-from pydux.pydux.api.Action import Action
-from pydux.pydux.api.State import State
+from typing_extensions import Generic
+from pydux.api.State import T
+from pydux.api.Action import Action
 
 
 class Store(ABC):
 
     @abstractmethod
-    def get_state(self) -> State:
+    def get_state(self) -> Generic[T]:
         pass
 
     @abstractmethod
@@ -15,11 +16,11 @@ class Store(ABC):
         pass
 
     @abstractmethod
-    def subscribe(self, consumer: Callable[[State], None]) -> None:
+    def subscribe(self, consumer: Callable[[T], None]) -> None:
         pass
 
     @abstractmethod
-    def replace_reducer(self, reducer: Callable[[Action, State], State]) -> None:
+    def replace_reducer(self, reducer: Callable[[Action, T], T]) -> None:
         pass
 
     @abstractmethod
