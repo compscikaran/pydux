@@ -16,6 +16,7 @@ class PyDuxStore(Store):
         self.time_travel = TimeTravel()
         self.time_travel.record_change(Action(TimeTravel.INITIAL_STATE, initial_state))
 
+    @override
     def get_state(self) -> T:
         return self.state
 
@@ -31,17 +32,21 @@ class PyDuxStore(Store):
     def notify_subscribers(self) -> None:
         [listener(self.state) for listener in self.listeners]
 
+    @override
     def subscribe(self, consumer: Callable[[T], None]) -> None:
         self.listeners.append(consumer)
 
+    @override
     def replace_reducer(self, reducer: Callable[[Action, T], T]) -> None:
         self.reducer = reducer
 
+    @override
     def forwards(self):
         self.time_travel.go_forwards()
         action_to_apply = self.time_travel.get_latest_action()
         self.dispatch(action_to_apply)
 
+    @override
     def backwards(self):
         self.time_travel.go_backwards()
         self.state = self.time_travel.get_initial_state()
