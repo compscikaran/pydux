@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Callable
 from typing_extensions import Generic
-from pydux.api.State import T
-from pydux.api.Action import Action
+from pydux.api.state import T
+from pydux.api.action import Action
 
 
 class Store(ABC):

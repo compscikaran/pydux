@@ -1,5 +1,5 @@
 from argparse import Action
-from pydux.api.State import State
+from pydux.api.state import State
 
 
 class TimeTravel:

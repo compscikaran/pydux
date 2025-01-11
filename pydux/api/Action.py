@@ -1,4 +1,4 @@
-from pydux.api.State import T
+from pydux.api.state import T
 
 class Action:
     def __init__(self, payload_type: str, payload: str | dict | T):

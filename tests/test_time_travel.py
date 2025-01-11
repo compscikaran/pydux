@@ -1,5 +1,5 @@
-from pydux.api.Action import Action
-from pydux.main.PyDuxStore import PyDuxStore
+from pydux.api.action import Action
+from pydux.main.pydux_store import PyDuxStore
 from tests.conftest import BaseData
 
 

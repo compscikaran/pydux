@@ -1,7 +1,7 @@
 import pytest
-from pydux.api.State import State
-from pydux.api.Action import Action
-from pydux.main.PyDuxStore import PyDuxStore
+from pydux.api.state import State
+from pydux.api.action import Action
+from pydux.main.pydux_store import PyDuxStore
 
 class BaseData:
     INITIAL_NAME = 'Karan Gupta'
